@@ -3,6 +3,7 @@ from sensor.entity.artifact_entity import DataIngestionArtifact, DataValidationA
 from sensor.entity.config_entity import DataValidationConfig
 from sensor.exception import SensorException
 from sensor.logger import logging
+from sensor.utils.main_utils import read_yaml_file
 import os, sys
 import pandas as pd
 
@@ -13,6 +14,7 @@ class DataValidation:
         try:
             self.data_ingestion_artifact = data_ingestion_artifact
             self.data_validation_config = data_validation_config
+            self._schema_config = read_yaml_file(SCHEMA_FILE_PATH)
             
         except Exception as e:
             raise SensorException(e, sys)
