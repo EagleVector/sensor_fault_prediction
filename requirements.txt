@@ -4,4 +4,6 @@ pandas
 scikit-learn
 PyYAML
 scipy
+dill
+imblearn
 -e .
