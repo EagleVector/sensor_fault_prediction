@@ -1,7 +1,9 @@
 from sensor.pipeline.training_pipeline import TrainPipeline
 from sensor.exception import SensorException
 from sensor.logger import logging
-import os, sys
+import os
+
+
 
 if __name__ == '__main__':
     try:
