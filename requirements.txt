@@ -6,4 +6,5 @@ PyYAML
 scipy
 dill
 imblearn
+xgboost
 -e .
