@@ -32,7 +32,6 @@ class SensorModel:
         except Exception as e:
             raise e
     
-
 class ModelResolver:
 
     def __init__(self,model_dir=SAVED_MODEL_DIR):
@@ -67,4 +66,4 @@ class ModelResolver:
 
             return True
         except Exception as e:
-            raise 
+            raise e
