@@ -3,7 +3,6 @@ import os,sys
 from sensor.logger import logging
 from sensor.pipeline import training_pipeline
 from sensor.pipeline.training_pipeline import TrainPipeline
-import os
 from sensor.utils.main_utils import read_yaml_file
 from sensor.constant.training_pipeline import SAVED_MODEL_DIR
 from fastapi import FastAPI
@@ -14,7 +13,7 @@ from fastapi.responses import Response
 from sensor.ml.model.estimator import ModelResolver,TargetValueMapping
 from sensor.utils.main_utils import load_object
 from fastapi.middleware.cors import CORSMiddleware
-import os
+import pandas as pd
 
 app = FastAPI()
 origins = ["*"]
@@ -47,10 +46,16 @@ async def train_route():
 @app.get("/predict")
 async def predict_route():
     try:
-        #get data from user csv file
-        #conver csv file to dataframe
+        csv_file = input("Enter the path where you have csv data: ")
+        os.chdir(csv_file)
 
-        df=None
+        user_input = input("Enter the file name you want to predict: ")
+        a = user_input + ".csv"
+
+        if os.path.exists(a):
+            df = pd.read_csv(a)
+        else:
+            df=None
         model_resolver = ModelResolver(model_dir=SAVED_MODEL_DIR)
         if not model_resolver.is_model_exists():
             return Response("Model is not available")
