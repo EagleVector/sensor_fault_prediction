@@ -46,16 +46,10 @@ async def train_route():
 @app.get("/predict")
 async def predict_route():
     try:
-        csv_file = input("Enter the path where you have csv data: ")
-        os.chdir(csv_file)
+        #get data from user csv file
+        #conver csv file to dataframe
 
-        user_input = input("Enter the file name you want to predict: ")
-        a = user_input + ".csv"
-
-        if os.path.exists(a):
-            df = pd.read_csv(a)
-        else:
-            df=None
+        df=None
         model_resolver = ModelResolver(model_dir=SAVED_MODEL_DIR)
         if not model_resolver.is_model_exists():
             return Response("Model is not available")
